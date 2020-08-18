@@ -34,27 +34,16 @@ class HashMapTest {
 
         map.put(456,67);
 
-        System.out.println(map.toString());
-
-        map.getValue(24);
+        Assertions.assertEquals(map.getValue(24),2);
 
         map.put(453,67);
 
-        System.out.println(map.size());
-
-        map.getValue(453);
-
-        System.out.println("Size -> "+map.size());
+        Assertions.assertEquals(map.getValue(453),67);
         System.out.println(map.toString());
-
     }
 
-    // Complete!!! Добавить ключи не могут повторятся
-    // Complete!!! Сортировка знач
-    // Complete!!! Поиск знач
-
     @Test
-    void test22() {
+    void SimpleTest() {
         MapInterface map = new MyHashMap();
 
         map.put(1,2);
@@ -103,27 +92,6 @@ class HashMapTest {
     }
 
     @Test
-    public void test333(){
-        MapInterface map = new MyHashMap();
-
-        map.put(100,600);
-        map.put(110,50);
-        map.put(1,6);
-        map.put(3,500);
-        map.put(7,8);
-
-        map.put(1,900);
-
-        try{
-            map.getValue(10);
-        } catch (Exception ex) {}
-
-        Assertions.assertEquals(map.getValue(3),500);
-        Assertions.assertEquals(map.getValue(7),8);
-        Assertions.assertEquals(map.getValue(1),900);
-    }
-
-    @Test
     public void globalTest() {
         MapInterface map = new MyHashMap();
 
@@ -142,6 +110,23 @@ class HashMapTest {
         Assertions.assertEquals(map.getValue(20),20);
 
         Assertions.assertFalse(map.toString().equals("[1 = 5] [2 = 4] [4 = 2] [5 = 10] [10 = 100] [20 = 20] [90 = 3] [999 = 5]"));
+    }
+
+    @Test
+    public void testWithBigValues() {
+        MapInterface map = new MyHashMap();
+
+        for(int i = 1000; i>0; i--) {
+            map.put(i,i*i);
+        }
+
+        for(int i=1; i<1000; i++) {
+            Assertions.assertEquals(map.getValue(i),i*i);
+        }
+
+        map.put(4,300);
+
+        Assertions.assertEquals(map.getValue(4),300);
     }
 
 }
