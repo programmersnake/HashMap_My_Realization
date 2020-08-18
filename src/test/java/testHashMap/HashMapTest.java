@@ -2,11 +2,8 @@ package testHashMap;
 
 import com.kostin.algorithms.MapInterface;
 import com.kostin.algorithms.MyHashMap;
-import lombok.SneakyThrows;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
 
 class HashMapTest {
 
@@ -58,6 +55,7 @@ class HashMapTest {
         map.put(98,21);
         map.put(99,61);
 
+        Assertions.assertEquals(map.size(),10);
         Assertions.assertEquals(map.getValue(93),41);
     }
 
@@ -128,5 +126,4 @@ class HashMapTest {
 
         Assertions.assertEquals(map.getValue(4),300);
     }
-
 }

@@ -5,38 +5,68 @@ import lombok.SneakyThrows;
 import java.util.Arrays;
 
 /**
+ * This class {@link MyHashMap} is equalize to {@link java.util.HashMap}
  * @author Kostin Denis
  */
-
 public class MyHashMap implements MapInterface{
 
+    /**
+     * The constructor configures two arrays.
+     * 1) for Keys
+     * 2) for Values
+     *
+     * The arrays are enlarged by a power of two.
+     * Start length is 16
+     */
     public MyHashMap() {
-        keys = new int[maxLenght];
-        values = new long[maxLenght];
+        keys = new int[maxLength];
+        values = new long[maxLength];
     }
 
     private boolean isSorted = false;
     private short doubleDegrees = 4;
-    private int maxLenght = 16;
+    private int maxLength = 16;
     private int length = 0;
     private int[] keys;
     private long[] values;
 
+    /**
+     * This void was created for increase a arrays.
+     * The arrays are enlarged by a power of two.
+     * int[] @param keysNow
+     * long[] @param valuesNow
+     */
     private void improveArrays(int[] keysNow, long[] valuesNow) {
-        maxLenght = (int) Math.pow(2, ++doubleDegrees);
-        keys = Arrays.copyOf(keysNow, maxLenght);
-        values = Arrays.copyOf(valuesNow, maxLenght);
+        maxLength = (int) Math.pow(2, ++doubleDegrees);
+        keys = Arrays.copyOf(keysNow, maxLength);
+        values = Arrays.copyOf(valuesNow, maxLength);
     }
 
+
+    /**
+     * if HashMap are Empty return false
+     * else true
+     * boolean @return
+     */
     private boolean isFull() {
-        return length == maxLenght;
+        return length == maxLength;
     }
 
+    /**
+     * if HashMap are Empty return true
+     * else false
+     * boolean @return
+     */
     @Override
     public boolean isEmpty() {
-        return length ==0;
+        return length == 0;
     }
 
+    /**
+     * This maethod adds values and keys to the HashMap cash
+     * int @param key
+     * long @param value
+     */
     @Override
     public void put(int key, long value) {
         isSorted = false;
@@ -57,6 +87,12 @@ public class MyHashMap implements MapInterface{
         isSorted = true;
     }
 
+    /**
+     * int @param arr
+     * int @param startIndex
+     * int @param endIndex
+     * int[] @return
+     */
     private int[] quickSort(int[] arr, int startIndex, int endIndex) {
 
         if(startIndex >= endIndex)
@@ -96,6 +132,12 @@ public class MyHashMap implements MapInterface{
         return arr;
     }
 
+    /**
+     * If HashMap is Empty then will return [ NegativeArraySizeException("This HashMap is Empty!!!") ]
+     * If HashMap hasn`t your key then will return [ NullPointerException("This HashMap don`t have this key" + "["+key+"] !!!") ]
+     * int @param key
+     * long @return
+     */
     @Override
     @SneakyThrows
     public long getValue(int key) {
@@ -162,10 +204,10 @@ public class MyHashMap implements MapInterface{
 
     @Override
     public String toString() {
-        String str = "";
+        StringBuilder str = new StringBuilder();
         for (int i = 0; i< length; i++) {
-            str+=("["+keys[i]+" = "+values[i]+"] ");
+            str.append("[").append(keys[i]).append(" = ").append(values[i]).append("] ");
         }
-        return str;
+        return str.toString();
     }
 }

@@ -1,10 +1,14 @@
 package com.kostin.algorithms;
 
+/**
+ * @author Kostin Denis
+ */
+
 public interface MapInterface {
 
-    public void put(int key, long value);
-    public long getValue(int key);
-    public int size();
-    public boolean isEmpty();
+    void put(int key, long value);
+    long getValue(int key);
+    int size();
+    boolean isEmpty();
 
 }
