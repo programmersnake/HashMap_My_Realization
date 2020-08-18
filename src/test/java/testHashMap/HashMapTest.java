@@ -12,9 +12,9 @@ class HashMapTest {
     @Test
     void testSortedFunction() {
         MapInterface map = new MyHashMap();
-        map.put(1,2);
-        map.put(10,2);
-        map.put(90,2);
+        map.put(1,23);
+        map.put(10,22);
+        map.put(90,21);
         map.put(7,2);
         map.put(2,2);
         map.put(4,2);
@@ -49,16 +49,31 @@ class HashMapTest {
     }
 
     // Добавить ключи не могут повторятся
-    // Сортировка знач
+    // Complete!!! Сортировка знач
     // Поиск знач
 
     @Test
     void test22() {
-        long i = System.nanoTime();
         MapInterface map = new MyHashMap();
-        map.put(7, 8);
-        System.out.println("Size = " + map.size());
-        long ii = System.nanoTime();
-        System.out.println((ii - i) * 1000000000);
+
+        map.put(1,2);
+        map.put(2,3);
+        map.put(3,4);
+        map.put(8,2);
+        map.put(100,9);
+
+        map.put(9,21);
+        map.put(97,31);
+        map.put(93,41);
+        map.put(98,21);
+        map.put(99,61);
+
+        map.printAllArray();
+
+        System.out.println(map.get(93));
+
+        System.out.println();
+
+        map.printAllArray();
     }
 }

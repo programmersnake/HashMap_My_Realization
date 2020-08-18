@@ -69,10 +69,18 @@ public class MyHashMap implements MapInterface{
             while((rightMarker > middleMarker) && (arr[rightMarker] >= arr[middleMarker])) rightMarker--;
 
             if(leftMarker < rightMarker) {
+
+                // Move Keys
                 int temp = arr[leftMarker];
                 arr[leftMarker] = arr[rightMarker];
                 arr[rightMarker] = temp;
 
+                // Move Values
+                long tempValue = values[leftMarker];
+                values[leftMarker] = values[rightMarker];
+                values[rightMarker] = tempValue;
+
+                // Reverse Markers
                 if (leftMarker == middleMarker)
                     middleMarker = rightMarker;
                 else if (rightMarker == middleMarker)
@@ -90,10 +98,10 @@ public class MyHashMap implements MapInterface{
         if (isEmpty()){
             throw new NegativeArraySizeException("HashMap is Empty!!!");
         }
-        //quickSort(keys,0, keys.length-1);
         quickSort(keys, 0 , lenght-1);
-        //Arrays.stream(keys).forEach(a-> System.out.print(a+" "));
-        return 0;
+        int indexOfValueByKey = Arrays.binarySearch(keys,key);
+
+        return values[indexOfValueByKey];
     }
 
     @Override
